@@ -6,7 +6,16 @@ import '../components/reusable_card.dart';
 import '../components/bottom_gesture_button.dart';
 
 class ResultsPage extends StatelessWidget {
-  const ResultsPage({Key? key}) : super(key: key);
+  const ResultsPage(
+      {Key? key,
+      required this.bmi,
+      required this.bmiText,
+      required this.interpretation})
+      : super(key: key);
+
+  final String bmi;
+  final String bmiText;
+  final String interpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +36,17 @@ class ResultsPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 8,
+            flex: 5,
             child: ReusableCard(
                 colour: kActiveCardColor,
                 childCard: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text("Result Text", style: kNeonSmallFont),
-                      Text("BMI Value", style: kBoldFontStyle),
-                      Text("Some tips", style: kLabelTextStyle),
+                      Text(bmiText, style: kNeonSmallFont),
+                      Text(bmi, style: kBoldFontStyle),
+                      Container(
+                          padding: EdgeInsets.all(20),
+                          child: Text(interpretation, style: kLabelTextStyle)),
                     ]),
                 onTap: () {}),
           ),

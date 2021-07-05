@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../screens/results_page.dart';
+
 import '../constants.dart';
 import '../appBarData.dart';
 import '../components/reusable_card.dart';
 import '../components/icon_content.dart';
 import '../components/round_icon_button.dart';
 import '../components/bottom_gesture_button.dart';
+import '../calculation_brain.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -190,7 +193,18 @@ class _InputPageState extends State<InputPage> {
           ),
           BottomGestureButton(
             onTap: () {
-              Navigator.pushNamed(context, '/results');
+              CalculationBrain calc =
+                  CalculationBrain(height: height, weight: weight);
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(
+                      bmi: calc.calculateBmi(),
+                      bmiText: calc.getBMIText(),
+                      interpretation: calc.getInterpretation()),
+                ),
+              );
             },
             buttonText: "CALCULATE BMI",
             buttonIcon: FontAwesomeIcons.balanceScale,
