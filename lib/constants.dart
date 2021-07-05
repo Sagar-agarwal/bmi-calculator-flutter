@@ -6,6 +6,7 @@ const kGreyDark = 0xFF8d8e98;
 const kGrey = 0xff1d1e33;
 const kGreyLight = 0xff111328;
 const kGreyLighter = 0xFF4C4F5E;
+const kNeonGreen = 0xFF39ff14;
 
 const kScaffoldBackgroundColor = 0xFF0A0D22;
 const kPrimaryColor = 0xFF0A0e21;
@@ -23,11 +24,20 @@ const kTextActiveColor = 0xFFffffff;
 const kActiveCardColor = 0xff1d1e33; //#1d1e33
 const kInactiveCardColor = 0xff111328; // #111328
 
+// TYPOGRAPHY Styles
 const kLabelTextStyle =
     TextStyle(color: Color(kTextInactiveColor), fontSize: 20);
+
 const kBoldFontStyle = TextStyle(
   fontWeight: FontWeight.w900,
   fontSize: 50,
 );
+
+const kLargeFont = TextStyle(
+  fontWeight: FontWeight.w600,
+  fontSize: 40,
+);
+
+const kNeonSmallFont = TextStyle(color: Color(kNeonGreen), fontSize: 20);
 
 enum kGender { male, female, notSelected }

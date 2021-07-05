@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'constants.dart';
-import 'appBarData.dart';
-import 'components/reusable_card.dart';
-import 'components/icon_content.dart';
-import 'components/round_icon_button.dart';
+import '../constants.dart';
+import '../appBarData.dart';
+import '../components/reusable_card.dart';
+import '../components/icon_content.dart';
+import '../components/round_icon_button.dart';
+import '../components/bottom_gesture_button.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -16,10 +17,12 @@ class _InputPageState extends State<InputPage> {
   kGender selectedCard = kGender.notSelected;
   int height = 160;
   int weight = 30;
+  int age = 10;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: null,
       appBar: appBarData(),
       body: Column(
         children: [
@@ -127,20 +130,20 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RoundIconButton(
-                              onPressed: (() {
+                              onPressed: () {
                                 setState(() {
                                   weight = weight == 30 ? 30 : weight - 1;
                                 });
-                              }),
+                              },
                               icon: FontAwesomeIcons.minus,
                             ),
                             SizedBox(width: 6),
                             RoundIconButton(
-                              onPressed: (() {
+                              onPressed: () {
                                 setState(() {
                                   weight++;
                                 });
-                              }),
+                              },
                               icon: FontAwesomeIcons.plus,
                             ),
                           ],
@@ -157,7 +160,27 @@ class _InputPageState extends State<InputPage> {
                     childCard: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Card 2", style: kLabelTextStyle),
+                        Text("AGE", style: kLabelTextStyle),
+                        Text(age.toString(), style: kBoldFontStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    age = age == 10 ? 10 : age - 1;
+                                  });
+                                },
+                                icon: FontAwesomeIcons.minus),
+                            RoundIconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                                icon: FontAwesomeIcons.plus),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -165,29 +188,14 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.all(10),
-            width: double.infinity,
-            height: 50,
-            decoration: BoxDecoration(
-              color: Color(kBottomButtonColor),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Center(
-              child: Text(
-                "CALCULATE BMI",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 5),
-              ),
-            ),
+          BottomGestureButton(
+            onTap: () {
+              Navigator.pushNamed(context, '/results');
+            },
+            buttonText: "CALCULATE BMI",
+            buttonIcon: FontAwesomeIcons.balanceScale,
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
       ),
     );
   }
